@@ -1,3 +1,5 @@
+--Employees
+DROP TABLE EMPLOYEES;
 CREATE TABLE Employees
 (
     EmployeeID	INT,
@@ -61,7 +63,7 @@ INSERT INTO Employees (EmployeeID, EmpFirstName, EmpLastName, EmpPhoneNumber, Em
 INSERT INTO Employees (EmployeeID, EmpFirstName, EmpLastName, EmpPhoneNumber, EmpEmail, Pay, StartDate, JobTitle) VALUES ('335852696', 'Dylan', 'Parsons', '283-388-5694', 'nibh.lacinia.orci@outlook.ca', 11.00 , '10/15/06', 'Stocker');
 INSERT INTO Employees (EmployeeID, EmpFirstName, EmpLastName, EmpPhoneNumber, EmpEmail, Pay, StartDate, JobTitle) VALUES ('276953492', 'Kasper', 'Clark', '757-749-7268', 'egestas@outlook.com', 11.00 , '9/13/03', 'Stocker');
 
--- Customer
+-- Customer (called customer1 because interfers with pre-existing customer table)
 CREATE TABLE Customer1 
 (
     CustomerID	INT,
@@ -533,6 +535,7 @@ INSERT INTO Customer1 (CustomerID, RewardsID, CustFirstName, CustLastName, CustP
 INSERT INTO Customer1 (CustomerID, RewardsID, CustFirstName, CustLastName, CustPhoneNumber, CustEmail, CustBirthday) VALUES ('415136784', '642539229', 'Carlos', 'Thompson', '186-426-6725', 'arcu.et.pede@protonmail.ca', '11/5/39');
 INSERT INTO Customer1 (CustomerID, RewardsID, CustFirstName, CustLastName, CustPhoneNumber, CustEmail, CustBirthday) VALUES ('485645576', '822822783', 'Aristotle', 'Ramos', '829-563-3113', 'in.scelerisque@outlook.ca', '8/23/46');
 
+-- Purchase
 DROP TABLE Purchase;
 CREATE TABLE Purchase 
 (
@@ -1039,8 +1042,8 @@ INSERT INTO Purchase (PurchaseID, RewardsID, EmployeeID, RewardsUsed, TotalCost,
 INSERT INTO Purchase (PurchaseID, RewardsID, EmployeeID, RewardsUsed, TotalCost, PointsEarned, CouponUsed, PointsUsed, PurchaseDate, ZipCode) VALUES ('921780986', '', '148556631', 'No', '386.59 ', '2', 'No', '12', '4/8/07', '85486');
 INSERT INTO Purchase (PurchaseID, RewardsID, EmployeeID, RewardsUsed, TotalCost, PointsEarned, CouponUsed, PointsUsed, PurchaseDate, ZipCode) VALUES ('266279054', '918379927', '579561338', 'Yes', '216.75 ', '45', 'No', '87', '10/7/15', '632468');
 INSERT INTO Purchase (PurchaseID, RewardsID, EmployeeID, RewardsUsed, TotalCost, PointsEarned, CouponUsed, PointsUsed, PurchaseDate, ZipCode) VALUES ('219050054', '', '499474376', 'No', '240.82 ', '47', 'No', '39', '10/28/07', '511737');
+-- Disregard any fail purchase inserts
 
-SELECT COUNT(*) FROM Purchase;
 --Rewards
 DROP TABLE REWARDS;
 CREATE TABLE Rewards 
@@ -2419,6 +2422,8 @@ INSERT INTO Product (ProductID, ProductDesc, ProductPoint, Price, Stock, FloorLo
 INSERT INTO Product (ProductID, ProductDesc, ProductPoint, Price, Stock, FloorLocation) VALUES ('490630328', 'malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla', '1', '23.76 ', '5', 'mus. Proin vel arcu eu odio tristique pharetra. Qu');
 INSERT INTO Product (ProductID, ProductDesc, ProductPoint, Price, Stock, FloorLocation) VALUES ('448191530', 'Quisque tincidunt pede ac urna.', '3', '30.91 ', '3', 'parturient montes, nascetur ridiculus mus. Proin v');
 
+
+-- Verifying Data Input
 SELECT COUNT(*) FROM EMPLOYEES;
 SELECT COUNT(*) FROM Customer1;
 SELECT COUNT(*) FROM PURCHASE;
@@ -2426,9 +2431,10 @@ SELECT COUNT(*) FROM Rewards;
 SELECT COUNT(*) FROM Purchase_Products;
 SELECT COUNT(*) FROM Product;
 
-DROP TABLE EMPLOYEES;
-DROP TABLE Customer1;
-DROP TABLE PURCHASE;
-DROP TABLE Rewards;
-DROP TABLE Purchase_Products;
-DROP TABLE Product;
+-- DROP QUERIES
+-- DROP TABLE EMPLOYEES;
+-- DROP TABLE Customer1;
+-- DROP TABLE PURCHASE;
+-- DROP TABLE Rewards;
+-- DROP TABLE Purchase_Products;
+-- DROP TABLE Product;
