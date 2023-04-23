@@ -1,6 +1,6 @@
 # finalproj
 This is our final project for CNIT 372
-Teammates === Jenna Lusk, Rose Elder, Jennifer Merry, Khushi Saini
+### Teammates === Jenna Lusk, Rose Elder, Jennifer Merry, Khushi Saini
 
 ## THEME
 Our theme is a midsize store similar to that of target with a rewards system for its customers.
