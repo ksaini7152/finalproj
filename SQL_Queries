@@ -67,7 +67,16 @@ WHERE
 --Q5
 
 
---Q6
+--Q6, Jennifer Merry
+--What month has the most rewards used and how many?
+SELECT 
+    TO_CHAR(TO_DATE(SUBSTR(PurchaseDate, 1, 10), 'MM/DD/YY'), 'Month') AS MonthName,
+    RewardsLevel,
+    COUNT(RewardsUsed) AS RewardsUsed
+FROM Purchase 
+JOIN Rewards ON Purchase.RewardsID = Rewards.RewardsID
+GROUP BY TO_CHAR(TO_DATE(SUBSTR(PurchaseDate, 1, 10), 'MM/DD/YY'), 'Month'), RewardsLevel
+ORDER BY RewardsUsed DESC;
 
 
 --Q7, Rose Elder
