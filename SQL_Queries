@@ -98,7 +98,12 @@ FROM (
 WHERE pay_rank = 1;
 
 
---Q9
+--Q9, Jennifer Merry
+--What percentage of customers have gold tier rewards?
+SELECT 
+    (COUNT(CASE WHEN Rewards.RewardsLevel = 'Gold' THEN 1 END) * 100.0 / COUNT(*)) AS GoldRewardsPercent
+FROM Customer1
+LEFT JOIN Rewards ON Customer1.RewardsID = Rewards.RewardsID;
 
 
 --Q10
