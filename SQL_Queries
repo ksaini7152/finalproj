@@ -1,4 +1,4 @@
--- Group 6:  
+-- Group 6: CNIT 372 Final Project Queries
 
 --Q1, Jennifer Merry
 --What are the purchasing trends amongst different age groups?
@@ -41,6 +41,7 @@ SELECT ZIPCODE, COUNT(ZIPCODE) AS PURCHASE_COUNT
 FROM Purchase 
 WHERE ZIPCODE = '47907' OR ZIPCODE = '47906' 
 GROUP BY ZIPCODE;
+
 
 --Q3, Rose Elder
 --What is the top 10% of locations in terms of sales?
@@ -159,5 +160,3 @@ SELECT
     SUM(CASE WHEN RewardStartDate LIKE '11%' OR RewardStartDate LIKE '12%' THEN 1 ELSE 0 END) AS ChristmasSignups,
     SUM(CASE WHEN RewardStartDate LIKE '6%' OR RewardStartDate LIKE '7%' OR RewardStartDate LIKE '8%' THEN 1 ELSE 0 END) AS SummerSignups
 FROM Rewards;
-
-
