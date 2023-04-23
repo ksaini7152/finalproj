@@ -1,6 +1,4 @@
--- Write your SQL queries here, with it labelled as follows
-
-# - Question answering, name
+-- Group 6:  
 
 --Q1, Jennifer Merry
 --What are the purchasing trends amongst different age groups?
@@ -43,14 +41,6 @@ SELECT ZIPCODE, COUNT(ZIPCODE) AS PURCHASE_COUNT
 FROM Purchase 
 WHERE ZIPCODE = '47907' OR ZIPCODE = '47906' 
 GROUP BY ZIPCODE;
-
--- OUTPUT Q2
-/*
-   ZIPCODE PURCHASE_COUNT
----------- --------------
-     47906             10
-     47907             11
-*/
 
 --Q3, Rose Elder
 --What is the top 10% of locations in terms of sales?
