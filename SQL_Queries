@@ -2,7 +2,39 @@
 
 # - Question answering, name
 
---Q1
+--Q1, Jennifer Merry
+--What are the purchasing trends amongst different age groups?
+SELECT AgeGroup, COUNT(*) as PurchaseCount
+FROM (
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 18 AND 24 THEN '18-24'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 25 AND 34 THEN '25-34'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 35 AND 44 THEN '35-44'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 45 AND 54 THEN '45-54'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 55 AND 64 THEN '55-64'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) >= 65 THEN '65+'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) <= 17 THEN 'Under 18'
+            ELSE 'N/A' 
+        END AS AgeGroup
+    FROM Customer1
+    UNION ALL
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 18 AND 24 THEN '18-24'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 25 AND 34 THEN '25-34'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 35 AND 44 THEN '35-44'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 45 AND 54 THEN '45-54'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) BETWEEN 55 AND 64 THEN '55-64'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) >= 65 THEN '65+'
+            WHEN EXTRACT(YEAR FROM SYSDATE) - (EXTRACT(YEAR FROM TO_DATE(CustBirthday, 'MM/DD/YY')+1900)) <= 17 THEN 'Under 18'
+            ELSE 'N/A' 
+        END AS AgeGroup
+    FROM Purchase
+    JOIN Rewards ON Purchase.RewardsID = Rewards.RewardsID
+    JOIN Customer1 ON Rewards.RewardsID = Customer1.RewardsID
+) 
+GROUP BY AgeGroup;
 
 
 --Q2, Jenna Lusk
