@@ -1,3 +1,83 @@
 -- Write your SQL queries here, with it labelled as follows
 
 # - Question answering, name
+
+--Q1
+
+
+--Q2
+
+
+--Q3, Rose Elder
+--What is the top 10% of locations in terms of sales?
+SELECT *
+FROM (
+    SELECT
+        FloorLocation,
+        SUM(Price * Quantity) AS TotalSales
+    FROM
+        Purchase_Products pp
+        INNER JOIN Product p ON pp.ProductID = p.ProductID
+    GROUP BY
+        FloorLocation
+    HAVING
+        SUM(Price * Quantity) >= (
+            SELECT
+                PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY SUM(Price * Quantity) DESC)
+            FROM
+                Purchase_Products pp
+                INNER JOIN Product p ON pp.ProductID = p.ProductID
+            GROUP BY
+                FloorLocation
+        )
+    ORDER BY
+        TotalSales DESC
+    )
+WHERE
+    ROWNUM <= (
+        SELECT
+            CEIL(COUNT(*) * 0.1)
+        FROM
+            (
+                SELECT DISTINCT
+                    FloorLocation
+                FROM
+                    Purchase_Products pp
+                    INNER JOIN Product p ON pp.ProductID = p.ProductID
+            )
+    );
+
+
+
+--Q4
+
+
+--Q5
+
+
+--Q6
+
+
+--Q7, Rose Elder
+--What floor locations have the most purchase?
+SELECT p.floorlocation, SUM(pp.quantity) AS total_purchases
+FROM Product p
+INNER JOIN Purchase_Products pp ON p.productID = pp.productID
+GROUP BY p.floorlocation
+ORDER BY total_purchases DESC;
+
+
+--Q8, Rose Elder
+--Who are the top earning employees within their respective job title
+SELECT EmpFirstName, EmpLastName, JobTitle, Pay
+FROM (
+    SELECT EmpFirstName, EmpLastName, JobTitle, Pay, RANK() OVER (PARTITION BY JobTitle ORDER BY Pay DESC) AS pay_rank
+    FROM Employees
+) ranked_employees
+WHERE pay_rank = 1;
+
+
+--Q9
+
+
+--Q10
