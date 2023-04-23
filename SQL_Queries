@@ -83,10 +83,35 @@ WHERE
 
 
 
---Q4
+--Q4, Khushi Saini
+--What are the total sales in a given month?
+DECLARE
+  total_sales DECIMAL(11,2);
+  error_message VARCHAR2(200);
+BEGIN
+
+  SELECT ROUND(SUM(TotalCost)) INTO total_sales
+  FROM Purchase
+  WHERE PurchaseDate >= '9/01/12' AND PurchaseDate <= '9/31/12';
+  DBMS_OUTPUT.PUT_LINE('The total sales for September 2012 is: ' || total_sales);
+
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      error_message := 'No records found!';
+      DBMS_OUTPUT.PUT_LINE(error_message);
+    WHEN OTHERS THEN
+      error_message := SQLERRM;
+      DBMS_OUTPUT.PUT_LINE('The error that occurred: ' || error_message);
+END;
 
 
---Q5
+--Q5, Khushi Saini
+--What is the average amount of rewards a Target customer receives as a bronze tier member?
+SELECT ROUND(AVG(Rewards.Points)) AS Avg_Rewards
+FROM Customer1
+JOIN Rewards ON Customer1.RewardsID = Rewards.RewardsID
+WHERE Rewards.RewardsLevel = 'Bronze';
+
 
 
 --Q6, Jennifer Merry
@@ -128,4 +153,11 @@ FROM Customer1
 LEFT JOIN Rewards ON Customer1.RewardsID = Rewards.RewardsID;
 
 
---Q10
+--Q10, Khushi Saini
+--How many rewards were started during the Winter Holiday’s season compared to the summer season?
+SELECT 
+    SUM(CASE WHEN RewardStartDate LIKE '11%' OR RewardStartDate LIKE '12%' THEN 1 ELSE 0 END) AS ChristmasSignups,
+    SUM(CASE WHEN RewardStartDate LIKE '6%' OR RewardStartDate LIKE '7%' OR RewardStartDate LIKE '8%' THEN 1 ELSE 0 END) AS SummerSignups
+FROM Rewards;
+
+
